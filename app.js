@@ -16,9 +16,12 @@ var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index");
 
-//mongoose.connect("mongodb://localhost/yelp_camp_v8");
-const databaseUrl = "mongodb://paul:Skyler11@ds127936.mlab.com:27936/yelpcamppaul";
-mongoose.connect(databaseUrl, {useMongoClient: true}).then(() => console.log("Database connected")).catch(err => console.log("Database connection error: ${err.message}"));
+
+mongoose.connect(process.env.DATABASEURL);
+// const databaseUrl = "mongodb://paul:Skyler11@ds127936.mlab.com:27936/yelpcamppaul";
+// mongoose.connect(databaseUrl, {useMongoClient: true})
+//   .then(() => console.log("Database connected"))
+//   .catch(err => console.log("Database connection error: ${err.message}"));
 
 mongoose.Promise = global.Promise;
 
