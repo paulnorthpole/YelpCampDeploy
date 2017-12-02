@@ -9,6 +9,7 @@ var express        = require("express"),
     Campground     = require("./models/campground"),
     Comment        = require("./models/comment"),
     User           = require("./models/user"),
+    bluebird       = require("bluebird"),
     seedDB         = require("./seeds");
 
 // Requring Routes
@@ -16,12 +17,15 @@ var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index");
 
+mongoose.Promise = bluebird;
 
-mongoose.connect(process.env.DATABASEURL);
-// const databaseUrl = "mongodb://paul:Skyler11@ds127936.mlab.com:27936/yelpcamppaul";
-// mongoose.connect(databaseUrl, {useMongoClient: true})
-//   .then(() => console.log("Database connected"))
-//   .catch(err => console.log("Database connection error: ${err.message}"));
+const databaseUri = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v8";
+mongoose.connect(databaseUri, {
+  promiseLibrary: bluebird,
+  useMongoClient: true
+})
+  .then(() => console.log("Database connected"))
+  .catch(err => console.log("Database connection error: ${err.message}"));
 
 mongoose.Promise = global.Promise;
 
