@@ -104,9 +104,9 @@ router.post('/forgot', function(req, res, next) {
 		var mailOptions = {
 			to: user.email,
 			from: process.env.GMAIL,
-			subject: 'Node.js Password Reset',
-			text: 'You are receiving this E-Mail because you (or someone else) has requested the reset' +
-			      'of your password.  Please click on the following link, or paste this into your browser' +
+			subject: 'YelpCamp Password Reset Request',
+			text: 'You are receiving this E-Mail because you (or someone else) has requested the reset ' +
+			      'of your password.  Please click on the following link, or paste this into your browser ' +
 			      'to complete the process.  ' +
 			      'http://' + req.headers.host + '/reset/' + token + '\n\n' +
 						'If you did not request this, please ignore this email and your password will remain unchanged'
@@ -119,7 +119,7 @@ router.post('/forgot', function(req, res, next) {
 	}
 ], function(err) {
 		if (err) return next(err);
-		res.redirect('/forgot');
+		res.redirect('/campgrounds');
   })
 });
 
