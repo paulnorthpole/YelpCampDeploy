@@ -5,7 +5,6 @@ var express    = require("express"),
     Campground = require("../models/campground"),
     async      = require("async"),
     nodemailer = require("nodemailer"),
-    dotenv     = require("dotenv").config(),
     crypto     = require("crypto");
 
 // Root Route
