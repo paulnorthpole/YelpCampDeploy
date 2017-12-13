@@ -5,7 +5,7 @@ var express    = require("express"),
     Campground = require("../models/campground"),
     async      = require("async"),
     nodemailer = require("nodemailer"),
-    dotenv = require("dotenv").config(),
+    dotenv     = require("dotenv").config(),
     crypto     = require("crypto");
 
 // Root Route
@@ -27,7 +27,7 @@ router.post("/register", function(req, res) {
       email:     req.body.email,
       avatar:    req.body.avatar
 		});
-	if (req.body.adminCode === "secretcode123") {
+	if (req.body.adminCode === process.env.ADMINCODE) {
 	    newUser.isAdmin = true;
 	}
 	User.register(newUser, req.body.password, function(err, user) {
